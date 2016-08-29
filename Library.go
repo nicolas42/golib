@@ -55,19 +55,26 @@ func MarkovChain( arg string, chainLen int, matchLen int) string {
 	// create chain and fill it with two words from a random location
 	rand.Seed(time.Now().Unix())
 	chain := []string{}
-	pos := rand.Intn(len(words)-2)
+	pos := rand.Intn(len(words)-matchLen)
 	chain = append(chain, words[pos])
 	chain = append(chain, words[pos+1])
 			
 			
 	for i:=1; i<=chainLen; i+=1 { // make 50 word chain
 	
-		query := chain [ len(chain)-2: ] // last two words in chain
+		query := chain [ len(chain)-matchLen: ] // last two words in chain
 		matches := []string{}	
 		
 		for i,_ := range words {
-			if words[i] == query[0] && words[i+1] == query[1] {
-				matches = append(matches, words[i+2])
+			isMatch := True
+			for j:=0; j<matchLen; j+=1 {
+				if words[i+j] != query[j] {
+					isMatch = False
+					break
+				}
+			}
+			if isMatch == True {
+				matches = append(matches, words[i:i+matchLen]...)
 			}
 		}
 
@@ -88,7 +95,7 @@ func DemoMarkovChain() {
 	// Read Project Gutenberg's The Adventures of Sherlock Holmes, by Arthur Conan Doyle
 	bytes := ReadUrl("http://www.gutenberg.org/cache/epub/1661/pg1661.txt") 
 	
-	fmt.Println(MarkovChain(bytes))
+	fmt.Println(MarkovChain(bytes), 50, 2)
 	
 }
 
