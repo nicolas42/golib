@@ -56,24 +56,25 @@ func MarkovChain( arg string, chainLen int, matchLen int) string {
 	rand.Seed(time.Now().Unix())
 	chain := []string{}
 	pos := rand.Intn(len(words)-matchLen)
-	chain = append(chain, words[pos])
-	chain = append(chain, words[pos+1])
+	
+	for w:=0; w<chainLen; w+=1 {
+		chain = append(chain, words[pos+w])
+	}
 			
-			
-	for i:=1; i<=chainLen; i+=1 { // make 50 word chain
+	for i:=1; i<=chainLen; i+=1 {
 	
 		query := chain [ len(chain)-matchLen: ] // last two words in chain
 		matches := []string{}	
 		
 		for i,_ := range words {
-			isMatch := True
+			isMatch := true
 			for j:=0; j<matchLen; j+=1 {
 				if words[i+j] != query[j] {
-					isMatch = False
+					isMatch = false
 					break
 				}
 			}
-			if isMatch == True {
+			if isMatch == true {
 				matches = append(matches, words[i:i+matchLen]...)
 			}
 		}
@@ -88,15 +89,6 @@ func MarkovChain( arg string, chainLen int, matchLen int) string {
 				
 	}
 	return strings.Join(chain, " ")
-}
-
-func DemoMarkovChain() {
-
-	// Read Project Gutenberg's The Adventures of Sherlock Holmes, by Arthur Conan Doyle
-	bytes := ReadUrl("http://www.gutenberg.org/cache/epub/1661/pg1661.txt") 
-	
-	fmt.Println(MarkovChain(bytes), 50, 2)
-	
 }
 
 func SplitAny(str string, chars string) []string {
@@ -142,17 +134,3 @@ func SplitAny(str string, chars string) []string {
 	return out
 }
 
-func testSplitAny() {
-
-	fmt.Println(`splitAny("234 * 3 *  234 (4234 )/ 242/*^", "*/+-^()")`)
-
-	split := SplitAny("234 * 3 *  234 (4234 )/ 242/*^", "*/+-^()")	
-
-	/* // print
-	out := []string{}
-	for _,v := range split {
-		out = append(out, fmt.Sprintf("[%v] ", v))
-	}
-	*/
-	fmt.Println(strings.Join(split,", "))
-}
