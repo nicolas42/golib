@@ -1,24 +1,9 @@
-// changed tabs to 4 spaces
-// How to check if a file exists in Go?  http://stackoverflow.com/questions/12518876/how-to-check-if-a-file-exists-in-go
-
-package nick
+package golib
 
 import (
   "io/ioutil"
   "os"
 )
-
-func main() {
-
-	if len(os.Args)>=2 {
-		if IsDir(os.Args[1]){
-			Tree(os.Args[1],"")
-		}
-	} else {
-		wd,_ := os.Getwd()
-		Tree(wd,"")
-	}
-}
 
 func IsDir(arg string) bool {
 	f, err := os.Stat(arg); 
@@ -58,3 +43,7 @@ type FileInfo interface {
 }
 
 */
+
+// changed tabs to 4 spaces
+// How to check if a file exists in Go?  http://stackoverflow.com/questions/12518876/how-to-check-if-a-file-exists-in-go
+

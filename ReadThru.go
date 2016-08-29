@@ -1,4 +1,4 @@
-package nick
+package golib
 
 import (
 	"strings"
