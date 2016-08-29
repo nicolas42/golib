@@ -25,10 +25,10 @@ func TestSplitAny(t *testing.T) {
 func TestMarkovChain(t *testing.T) {
 
 	// Read Project Gutenberg's The Adventures of Sherlock Holmes, by Arthur Conan Doyle
-	bytes := ReadUrl("http://www.gutenberg.org/cache/epub/1661/pg1661.txt") 
+	bytes := ReadThru("http://www.gutenberg.org/cache/epub/1661/pg1661.txt") 
 	
 	fmt.Println("MarkovChain(string(bytes), 50, 2)")
 	fmt.Println( MarkovChain(string(bytes), 50, 2) )
-	
+	println()
+		
 }
-

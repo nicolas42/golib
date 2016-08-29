@@ -7,12 +7,14 @@ import (
 	"os"
 )
 
+/*
 func main(){
 
 	a := ReadThru("http://www.gutenberg.org/cache/epub/236/pg236.txt")
 	fmt.Println(string(a[:200]))
 	// TestReadThru()
 }
+*/
 
 func TestReadThru(){
 
