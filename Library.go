@@ -1,4 +1,4 @@
-package lib
+package nick
 
 import (
 	"fmt"
@@ -27,7 +27,7 @@ func AutoRename(file string ) string {
 
 	nf := file  // newfile
 	n := 1
-	for	isExist(nf) { // file exists
+	for	IsExist(nf) { // file exists
 		n += 1
 		ext := filepath.Ext(nf)
 		name := strings.TrimSuffix(nf, ext)
@@ -36,7 +36,7 @@ func AutoRename(file string ) string {
 	return nf
 }
 
-func isExist(file string) bool {
+func IsExist(file string) bool {
 	_, err := os.Stat(file) 
 	return err == nil
 }
@@ -48,9 +48,9 @@ func PrintCurly(v []string) {
 
 }
 
-func MarkovChain( arg []byte) []string {
+func MarkovChain( arg string, chainLen int, matchLen int) string {
 
-	words := strings.Fields(string(arg))
+	words := strings.Fields(arg)
 		
 	// create chain and fill it with two words from a random location
 	rand.Seed(time.Now().Unix())
@@ -60,7 +60,7 @@ func MarkovChain( arg []byte) []string {
 	chain = append(chain, words[pos+1])
 			
 			
-	for i:=1; i<=50; i+=1 { // make 50 word chain
+	for i:=1; i<=chainLen; i+=1 { // make 50 word chain
 	
 		query := chain [ len(chain)-2: ] // last two words in chain
 		matches := []string{}	
@@ -80,7 +80,7 @@ func MarkovChain( arg []byte) []string {
 		}
 				
 	}
-	return chain
+	return strings.Join(chain, " ")
 }
 
 func DemoMarkovChain() {
