@@ -4,7 +4,26 @@ import (
 	"testing"
 	"fmt"
 	"strings"
+	"os"
 )
+
+func TestTree(t *testing.T){
+	// Should go first as can print a lot of text
+	wd,_ := os.Getwd()
+
+	fmt.Println("Current dir")
+	Tree(wd,"")
+	
+//	fmt.Println("Up one dir")
+//	Tree("../", "")
+
+//	if len(os.Args)>=2 {
+//		if IsDir(os.Args[1]){
+//			Tree(os.Args[1],"")
+//		}
+	println()
+}
+
 
 func TestSplitAny(t *testing.T) {
 
@@ -32,3 +51,4 @@ func TestMarkovChain(t *testing.T) {
 	println()
 		
 }
+

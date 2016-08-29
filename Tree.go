@@ -11,16 +11,16 @@ import (
 func main() {
 
 	if len(os.Args)>=2 {
-		if isDir(os.Args[1]){
-			Rtree(os.Args[1],"")
+		if IsDir(os.Args[1]){
+			Tree(os.Args[1],"")
 		}
 	} else {
 		wd,_ := os.Getwd()
-		Rtree(wd,"")
+		Tree(wd,"")
 	}
 }
 
-func isDir(arg string) bool {
+func IsDir(arg string) bool {
 	f, err := os.Stat(arg); 
 	if err != nil { 
 		return false
@@ -28,13 +28,13 @@ func isDir(arg string) bool {
 	return f.IsDir()
 }
 
-func Rtree(dir, tabs string) {
+func Tree(dir, tabs string) {
 	
 	files, _ := ioutil.ReadDir(dir) // returns []os.FileInfo
 	for _, f := range files {
 		if f.IsDir() {
 			println(tabs+f.Name()+"/")
-			Rtree( dir+"/"+f.Name(), tabs+"    " )
+			Tree( dir+"/"+f.Name(), tabs+"    " )
 		} else {
 			println(tabs+f.Name())
 		}
