@@ -7,7 +7,8 @@ import (
 	"os"
 )
 
-func TestTree(t *testing.T){
+
+/*func TestTree(t *testing.T){
 	// Should go first as can print a lot of text
 	wd,_ := os.Getwd()
 
@@ -23,7 +24,7 @@ func TestTree(t *testing.T){
 //		}
 	println()
 }
-
+*/
 
 func TestSplitAny(t *testing.T) {
 
@@ -52,3 +53,13 @@ func TestMarkovChain(t *testing.T) {
 		
 }
 
+func TestIndexFiles(t *testing.T){
+	wd,_ := os.Getwd()
+	print(wd)
+
+//	for _, o := range out { println(o) }
+//	fmt.Println(strings.Join(out, "\n"))
+
+	fmt.Println(IndexFiles(wd))
+
+}

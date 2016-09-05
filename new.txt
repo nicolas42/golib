@@ -1,0 +1,3 @@
+func IsBetween(a,b,c float64) bool {
+	return b <= a && a <= c
+}

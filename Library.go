@@ -23,6 +23,7 @@ func ReadUrl(url string) []byte {
 
 func AutoRename(file string ) string {
 
+	// renames filename string if there is a collision
 	nf := file  // newfile
 	n := 1
 	for	IsExist(nf) { // file exists
